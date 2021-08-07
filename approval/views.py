@@ -54,7 +54,7 @@ def approve_by_discord(request):
     code = request.GET.get('code')
     
     try:
-        record = ApprovalRecord.objects.get(discord_id = discord_id, token__startswith = code)
+        record = ApprovalRecord.objects.get(discord_id = discord_id, token_iexact = code)
         record.approved = True
         record.save()
 
