@@ -17,7 +17,7 @@ def request(request):
     discord_id = request.GET.get('discord_id')
     discord_name = request.GET.get('discord_name')
     server = request.GET.get('server')
-    token = hex(random.getrandbits(64 * 4))[2:]
+    token = hex(random.getrandbits(64 * 4))[2:6]
     record = ApprovalRecord(
         kerberos = kerb,
         discord_id = discord_id,
@@ -54,7 +54,7 @@ def approve_by_discord(request):
     code = request.GET.get('code')
     
     try:
-        record = ApprovalRecord.objects.get(discord_id = discord_id, token__startswith = code)
+        record = ApprovalRecord.objects.get(discord_id = discord_id, token_iexact = code)
         record.approved = True
         record.save()
 
