@@ -17,7 +17,7 @@ def request(request):
     discord_id = request.GET.get('discord_id')
     discord_name = request.GET.get('discord_name')
     server = request.GET.get('server')
-    token = hex(random.getrandbits(64 * 4))[2:]
+    token = hex(random.getrandbits(64 * 4))[2:6]
     record = ApprovalRecord(
         kerberos = kerb,
         discord_id = discord_id,
